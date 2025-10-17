@@ -17,7 +17,7 @@ public class SQLiteDatabase {
 	private final long sqliteHandle;
 
 	private boolean isOpen;
-    private boolean inTransaction;
+  private boolean inTransaction;
 
 	public long getSQLiteHandle() {
 		return sqliteHandle;
@@ -34,9 +34,9 @@ public class SQLiteDatabase {
 		return executeInt(s, tableName) != null;
 	}
 
-    public SQLitePreparedStatement executeFast(String sql) throws SQLiteException {
-        return new SQLitePreparedStatement(this, sql);
-    }
+  public SQLitePreparedStatement executeFast(String sql) throws SQLiteException {
+    return new SQLitePreparedStatement(this, sql);
+  }
 
 	public Integer executeInt(String sql, Object... args) throws SQLiteException {
 		checkOpened();
@@ -58,9 +58,9 @@ public class SQLiteDatabase {
 			int count = cursor.getColumnCount();
 			StringBuilder builder = new StringBuilder();
 			for (int a = 0; a < count; a++) {
-			    builder.append(cursor.stringValue(a)).append(", ");
-            }
-            FileLog.d("EXPLAIN QUERY PLAN " + builder.toString());
+			  builder.append(cursor.stringValue(a)).append(", ");
+      }
+      FileLog.d("EXPLAIN QUERY PLAN " + builder.toString());
 		}
 		cursor.dispose();
 	}
@@ -73,7 +73,7 @@ public class SQLiteDatabase {
 	public void close() {
 		if (isOpen) {
 			try {
-                commitTransaction();
+        commitTransaction();
 				closedb(sqliteHandle);
 			} catch (SQLiteException e) {
 				if (BuildVars.LOGS_ENABLED) {
@@ -91,32 +91,32 @@ public class SQLiteDatabase {
 	}
 
 	public void finalize() throws Throwable {
-        super.finalize();
+    super.finalize();
 		close();
 	}
 
-    public void beginTransaction() throws SQLiteException {
-        if (inTransaction) {
-			if (BuildVars.DEBUG_PRIVATE_VERSION) {
+  public void beginTransaction() throws SQLiteException {
+    if (inTransaction) {
+			if (BuildVars.DEBUG_VERSION) {
 				throw new SQLiteException("database already in transaction");
 			} else {
 				commitTransaction();
 			}
-        }
-        inTransaction = true;
-        beginTransaction(sqliteHandle);
     }
+    inTransaction = true;
+    beginTransaction(sqliteHandle);
+  }
 
-    public void commitTransaction() {
-        if (!inTransaction) {
-            return;
-        }
-        inTransaction = false;
-        commitTransaction(sqliteHandle);
+  public void commitTransaction() {
+    if (!inTransaction) {
+      return;
     }
+    inTransaction = false;
+    commitTransaction(sqliteHandle);
+  }
 
 	native long opendb(String fileName, String tempDir) throws SQLiteException;
 	native void closedb(long sqliteHandle) throws SQLiteException;
-    native void beginTransaction(long sqliteHandle);
-    native void commitTransaction(long sqliteHandle);
+  native void beginTransaction(long sqliteHandle);
+  native void commitTransaction(long sqliteHandle);
 }

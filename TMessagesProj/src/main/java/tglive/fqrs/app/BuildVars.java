@@ -20,7 +20,6 @@ public class BuildVars {
 
     public static boolean DEBUG_VERSION = tglive.fqrs.app.BuildConfig.DEBUG_VERSION;
     public static boolean LOGS_ENABLED = tglive.fqrs.app.BuildConfig.DEBUG_VERSION;
-    public static boolean DEBUG_PRIVATE_VERSION = tglive.fqrs.app.BuildConfig.DEBUG_PRIVATE_VERSION;
     public static boolean USE_CLOUD_STRINGS = true;
     public static boolean CHECK_UPDATES = true;
     public static boolean NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
@@ -57,7 +56,7 @@ public class BuildVars {
     }
 
     public static boolean useInvoiceBilling() {
-        return BillingController.billingClientEmpty || DEBUG_VERSION && false || ApplicationLoader.isStandaloneBuild() || isHuaweiStoreApp() || hasDirectCurrency();
+        return BillingController.billingClientEmpty || DEBUG_VERSION && false || hasDirectCurrency();
     }
 
     private static boolean hasDirectCurrency() {
@@ -79,10 +78,10 @@ public class BuildVars {
 
 
     public static boolean isHuaweiStoreApp() {
-        return ApplicationLoader.isHuaweiStoreBuild();
+        return false;
     }
 
     public static String getSmsHash() {
-        return ApplicationLoader.isStandaloneBuild() ? "w0lkcmTZkKh" : (DEBUG_VERSION ? "O2P2z+/jBpJ" : "oLeq9AcOZkT");
+        return DEBUG_VERSION ? "O2P2z+/jBpJ" : "oLeq9AcOZkT";
     }
 }

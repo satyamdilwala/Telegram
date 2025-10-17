@@ -225,17 +225,14 @@ public class VideoCapturerDevice {
 
                         }
                         
-                        @Override
                         public void onCapturerStarted(boolean success) {
                             // Stub implementation
                         }
                         
-                        @Override
                         public void onCapturerStopped() {
                             // Stub implementation
                         }
                         
-                        @Override
                         public void onFrameCaptured(VideoFrame frame) {
                             // Stub implementation
                         }

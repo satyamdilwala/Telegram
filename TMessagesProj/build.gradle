@@ -120,66 +120,10 @@ android {
             buildConfigField "String", "BUILD_VERSION_STRING", "\"" + APP_VERSION_NAME + "\""
             buildConfigField "String", "APP_CENTER_HASH", "\"\""
             buildConfigField "boolean", "DEBUG_VERSION", "true"
-            buildConfigField "boolean", "DEBUG_PRIVATE_VERSION", "true"
             buildConfigField "boolean", "BUILD_HOST_IS_WINDOWS", isWindows
             buildConfigField "int", "VERSION_NUM", "0"
         }
 
-        HA_private {
-            jniDebuggable false
-            minifyEnabled true
-            multiDexEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), '../TMessagesProj/proguard-rules.pro'
-            ndk.debugSymbolLevel = 'FULL'
-            buildConfigField "String", "BUILD_VERSION_STRING", "\"" + APP_VERSION_NAME + "\""
-            buildConfigField "String", "APP_CENTER_HASH", "\"" + getProps("APP_CENTER_HASH_PRIVATE") + "\""
-            buildConfigField "boolean", "DEBUG_VERSION", "true"
-            buildConfigField "boolean", "DEBUG_PRIVATE_VERSION", "true"
-            buildConfigField "boolean", "BUILD_HOST_IS_WINDOWS", isWindows
-            buildConfigField "int", "VERSION_NUM", "1"
-        }
-
-        HA_public {
-            jniDebuggable false
-            minifyEnabled true
-            multiDexEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), '../TMessagesProj/proguard-rules.pro'
-            ndk.debugSymbolLevel = 'FULL'
-            buildConfigField "String", "BUILD_VERSION_STRING", "\"" + APP_VERSION_NAME + "\""
-            buildConfigField "String", "APP_CENTER_HASH", "\"" + getProps("APP_CENTER_HASH_PUBLIC") + "\""
-            buildConfigField "boolean", "DEBUG_VERSION", "true"
-            buildConfigField "boolean", "DEBUG_PRIVATE_VERSION", "false"
-            buildConfigField "boolean", "BUILD_HOST_IS_WINDOWS", isWindows
-            buildConfigField "int", "VERSION_NUM", "4"
-        }
-
-        HA_hardcore {
-            jniDebuggable false
-            minifyEnabled true
-            multiDexEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), '../TMessagesProj/proguard-rules.pro'
-            ndk.debugSymbolLevel = 'FULL'
-            buildConfigField "String", "BUILD_VERSION_STRING", "\"" + APP_VERSION_NAME + "\""
-            buildConfigField "String", "APP_CENTER_HASH", "\"" + getProps("APP_CENTER_HASH_HARDCORE") + "\""
-            buildConfigField "boolean", "DEBUG_VERSION", "true"
-            buildConfigField "boolean", "DEBUG_PRIVATE_VERSION", "true"
-            buildConfigField "boolean", "BUILD_HOST_IS_WINDOWS", isWindows
-            buildConfigField "int", "VERSION_NUM", "5"
-        }
-
-        standalone {
-            jniDebuggable false
-            minifyEnabled true
-            multiDexEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), '../TMessagesProj/proguard-rules.pro'
-            ndk.debugSymbolLevel = 'FULL'
-            buildConfigField "String", "BUILD_VERSION_STRING", "\"" + APP_VERSION_NAME + "\""
-            buildConfigField "String", "APP_CENTER_HASH", "\"\""
-            buildConfigField "boolean", "DEBUG_VERSION", "false"
-            buildConfigField "boolean", "DEBUG_PRIVATE_VERSION", "false"
-            buildConfigField "boolean", "BUILD_HOST_IS_WINDOWS", isWindows
-            buildConfigField "int", "VERSION_NUM", "6"
-        }
 
         release {
             jniDebuggable false
@@ -191,7 +135,6 @@ android {
             buildConfigField "String", "BUILD_VERSION_STRING", "\"" + APP_VERSION_NAME + "\""
             buildConfigField "String", "APP_CENTER_HASH", "\"\""
             buildConfigField "boolean", "DEBUG_VERSION", "false"
-            buildConfigField "boolean", "DEBUG_PRIVATE_VERSION", "false"
             buildConfigField "boolean", "BUILD_HOST_IS_WINDOWS", isWindows
             buildConfigField "int", "VERSION_NUM", "7"
         }
@@ -215,20 +158,3 @@ def getProps(String propName) {
     }
 }
 apply plugin: 'com.google.gms.google-services'
-
-// Check if public builds are allowed during configuration phase
-def isPublicAllowed = !project.hasProperty("IS_PRIVATE") || !project.property("IS_PRIVATE").toBoolean()
-
-task checkVisibility {
-    doFirst {
-        // Check if this is a private build by examining the current task name
-        def currentTaskName = name
-        def isPrivateBuild = currentTaskName.contains("HA_private") || currentTaskName.contains("HA_hardcore") || currentTaskName.contains("Debug") || currentTaskName.contains("Release")
-        
-        if (!isPrivateBuild && !isPublicAllowed) {
-            throw new GradleException("Building public version of private code!")
-        }
-    }
-}
-
-preBuild.dependsOn checkVisibility
