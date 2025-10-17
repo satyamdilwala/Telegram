@@ -24,7 +24,7 @@ import android.view.animation.Interpolator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.telegram.messenger.AndroidUtilities;
+import tglive.fqrs.app.AndroidUtilities;
 
 import me.vkryl.core.lambda.FutureFloat;
 

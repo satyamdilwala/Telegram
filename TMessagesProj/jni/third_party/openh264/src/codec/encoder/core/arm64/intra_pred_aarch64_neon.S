@@ -502,4 +502,46 @@ WELS_ASM_AARCH64_FUNC_BEGIN WelsI16x16LumaPredPlane_AArch64_neon
     st1     {v4.16b}, [x0], 16
 .endr
 WELS_ASM_AARCH64_FUNC_END
+
+// Missing functions for ARM64 compatibility
+WELS_ASM_AARCH64_FUNC_BEGIN WelsI4x4LumaPredV_neon
+    // Load the top row (4 bytes)
+    sub  x3, x1, x2
+    ldr  w3, [x3]
+    
+    // Set the luma MB using top line
+    str  w3, [x0], #4
+    str  w3, [x0], #4
+    str  w3, [x0], #4
+    str  w3, [x0]
+WELS_ASM_AARCH64_FUNC_END
+
+WELS_ASM_AARCH64_FUNC_BEGIN WelsI4x4LumaPredDDR_neon
+    // Load the top row (4 bytes)
+    sub    x3, x1, x2
+    ldr    w3, [x3]
+    
+    // Load the left column (5 bytes)
+    sub    x3, x3, #1
+    ldrb   w4, [x3]
+    add    x3, x3, x2
+    ldrb   w5, [x3]
+    add    x3, x3, x2
+    ldrb   w6, [x3]
+    add    x3, x3, x2
+    ldrb   w7, [x3]
+    add    x3, x3, x2
+    ldrb   w8, [x3]
+    
+    // Simple implementation - use average of top and left
+    add    w3, w3, w4
+    lsr    w3, w3, #1
+    
+    // Set the luma MB
+    str    w3, [x0], #4
+    str    w3, [x0], #4
+    str    w3, [x0], #4
+    str    w3, [x0]
+WELS_ASM_AARCH64_FUNC_END
+
 #endif

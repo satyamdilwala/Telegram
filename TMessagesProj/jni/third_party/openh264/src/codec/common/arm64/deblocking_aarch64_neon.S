@@ -848,5 +848,9 @@ WELS_ASM_AARCH64_FUNC_BEGIN DeblockingBSCalcEnc_AArch64_neon
     st1 {v0.16b, v1.16b}, [x4]
 WELS_ASM_AARCH64_FUNC_END
 
+// Create alias for compatibility
+WELS_ASM_AARCH64_FUNC_BEGIN DeblockingBSCalcEnc_neon
+    b DeblockingBSCalcEnc_AArch64_neon
+WELS_ASM_AARCH64_FUNC_END
 
 #endif

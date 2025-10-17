@@ -1,6 +1,33 @@
 cmake_minimum_required(VERSION 3.6.0)
 
-set(CMAKE_CXX_FLAGS "-std=c++17 -DANDROID -g")
+set(CMAKE_CXX_FLAGS "-std=c++17 -DANDROID -g -fno-exceptions -fno-rtti")
+set(CMAKE_C_FLAGS "-w -std=c11 -DANDROID -D_LARGEFILE_SOURCE=1 -g")
+set(CMAKE_ASM_FLAGS "${CFLAGS} -x assembler-with-cpp")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -ffunction-sections -fdata-sections")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ffunction-sections -fdata-sections")
+
+if (${ANDROID_ABI} STREQUAL "armeabi-v7a" OR ${ANDROID_ABI} STREQUAL "arm64-v8a")
+    enable_language(ASM)
+    # Enable NEON support for ARM targets
+    if (${ANDROID_ABI} STREQUAL "armeabi-v7a")
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mfpu=neon -mfloat-abi=softfp")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mfpu=neon -mfloat-abi=softfp")
+        set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -mfpu=neon -mfloat-abi=softfp")
+        # Add NEON-specific definitions
+        add_definitions(-DWEBRTC_HAS_NEON)
+        add_definitions(-DHAVE_NEON)
+    endif()
+    if (${ANDROID_ABI} STREQUAL "arm64-v8a")
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=armv8-a")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=armv8-a")
+        set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -march=armv8-a")
+        # Add NEON-specific definitions
+        add_definitions(-DWEBRTC_HAS_NEON)
+        add_definitions(-DHAVE_NEON)
+    endif()
+else()
+    enable_language(ASM_NASM)
+endif()
 
 #tgvoip
 add_library(tgvoip STATIC
@@ -2003,7 +2030,7 @@ add_library(voipandroid STATIC
         voip/webrtc/sdk/android/src/jni/video_encoder_wrapper.cc
         voip/webrtc/sdk/android/src/jni/timestamp_aligner.cc
         voip/webrtc/sdk/android/src/jni/nv12_buffer.cc
-        voip/org_telegram_messenger_voip_Instance.cpp
+        voip/tglive_fqrs_app_voip_Instance.cpp
 )
 target_compile_options(voipandroid PUBLIC
         -Wall -finline-functions -ffast-math -fexceptions)

@@ -60,4 +60,9 @@ mem_zero_end:
 
 WELS_ASM_AARCH64_FUNC_END
 
+// Create alias for compatibility
+WELS_ASM_AARCH64_FUNC_BEGIN WelsSetMemZero_neon
+    b WelsSetMemZero_AArch64_neon
+WELS_ASM_AARCH64_FUNC_END
+
 #endif

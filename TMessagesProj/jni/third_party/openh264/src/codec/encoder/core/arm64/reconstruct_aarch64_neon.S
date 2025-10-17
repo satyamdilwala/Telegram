@@ -714,4 +714,9 @@ WELS_ASM_AARCH64_FUNC_BEGIN WelsIDctRecI16x16Dc_AArch64_neon
     st1       {v3.16b}, [x0], x1
 .endr
 WELS_ASM_AARCH64_FUNC_END
+
+// Create alias for compatibility
+WELS_ASM_AARCH64_FUNC_BEGIN WelsHadamardQuant2x2SkipKernel_neon
+    b WelsHadamardQuant2x2SkipKernel_AArch64_neon
+WELS_ASM_AARCH64_FUNC_END
 #endif

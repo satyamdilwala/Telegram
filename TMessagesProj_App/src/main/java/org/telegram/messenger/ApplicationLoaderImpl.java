@@ -1,6 +1,6 @@
-package org.telegram.messenger;
+package tglive.fqrs.app;
 
-import org.telegram.messenger.regular.BuildConfig;
+import tglive.fqrs.app.BuildConfig;
 
 public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override

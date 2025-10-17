@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AppName">Telegram</string>
-    <string name="AppNameBeta">Telegram Beta</string>
+    <string name="AppName">TG Live</string>
     <string name="LanguageName">English</string>
     <string name="English">English</string>
     <string name="LanguageNameInEnglish">English</string>
@@ -33,9 +32,9 @@
     <!--code enter view-->
     <string name="YourCode">Phone verification</string>
     <string name="SentSmsCode">We’ve sent an SMS with an activation code to your phone **%1$s**.</string>
-    <string name="SentAppCode">We\'ve sent the code to the **Telegram** app on your other device.</string>
-    <string name="SentAppCodeWithPhone">We\'ve sent the code to the **Telegram** app for %1$s on your other device.</string>
-    <string name="SentAppCodeTitle">Check your Telegram messages</string>
+    <string name="SentAppCode">We\'ve sent the code to the **TGLive** app on your other device.</string>
+    <string name="SentAppCodeWithPhone">We\'ve sent the code to the **TGLive** app for %1$s on your other device.</string>
+    <string name="SentAppCodeTitle">Check your TGLive messages</string>
     <string name="SentFragmentCode">Get the code for %1$s in the Anonymous Numbers section on Fragment.</string>
     <string name="SentSmsCodeTitle">Enter code</string>
     <string name="OpenFragment">Open Fragment</string>
@@ -2519,6 +2518,7 @@
     <string name="ChooseYourLanguage">Choose your language</string>
     <string name="ChooseYourLanguageOther">Other</string>
     <string name="Paste">Paste</string>
+    <string name="paste">Paste</string>
     <string name="Flip">Flip</string>
     <string name="SegmentationTabToCrop">Tap on an object to crop it</string>
     <string name="SegmentationCutOut">Cut Out</string>
@@ -2625,9 +2625,7 @@
     <string name="QRCodePermissionNoCameraWithHint">**Telegram** needs camera access so that you can scan QR codes. Tap Settings -> Permissions, and turn **Camera** on.</string>
     <string name="SetProfilePhoto">Set Profile Photo</string>
     <string name="AppUpdate">Update Telegram</string>
-    <string name="AppUpdateBeta">Update Telegram Beta</string>
     <string name="AppUpdateVersionAndSize">Version %1$s • %2$s</string>
-    <string name="AppBetaUpdateVersion">Version %1$s (%2$s)</string>
     <string name="AppUpdateDownloading">Downloading %1$d%%...</string>
     <string name="AppUpdateNow">Update Now</string>
     <string name="AppUpdateDownloadNow">Download Now</string>
@@ -3618,6 +3616,7 @@
     <string name="Call">Call</string>
     <string name="VideoCall">Video Call</string>
     <string name="Copy">Copy</string>
+    <string name="copy">Copy</string>
     <string name="Restrict">Restrict</string>
     <string name="Ban">Ban</string>
     <string name="Rename">Rename</string>
@@ -6146,6 +6145,7 @@
     <string name="FolderLinkAlreadySubscribed">You already subscribed to this channel.</string>
     <string name="FolderLinkAlreadyJoined">You are already a member of this group.</string>
     <string name="SelectAll">Select All</string>
+    <string name="selectAll">Select All</string>
     <string name="DeselectAll">Deselect All</string>
     <string name="FolderLinkAddedTitle">Folder **%s** Added</string>
     <string name="FolderLinkAddedSubtitle_one">You also joined %d chat.</string>
@@ -9820,4 +9820,11 @@
     <string name="DateOfBirthHideYear">Hide Year</string>
     <string name="DateOfBirthAddToProfile">Add to My Profile</string>
     <string name="SuggestedDateOfBirthView">View</string>
+    <string name="SmsJobsMenu">SMS Jobs</string>
+    <string name="SmsNoSimTitle">No SIM Card</string>
+    <string name="SmsNoSimMessage">Please insert a SIM card to use SMS jobs.</string>
+    <string name="SmsJobsErrorHintTitle">SMS Jobs Error</string>
+    <string name="SmsJobsErrorHintMessage">There was an error with SMS jobs. Tap to view details.</string>
+    <string name="SmsJobsPremiumHintTitle">SMS Jobs Available</string>
+    <string name="SmsJobsPremiumHintMessage">You can now earn money by sending SMS messages.</string>
 </resources>

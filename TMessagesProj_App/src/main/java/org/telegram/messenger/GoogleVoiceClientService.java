@@ -6,12 +6,13 @@
  * Copyright Nikolai Kudashov, 2013-2018.
  */
 
-package org.telegram.messenger;
+package tglive.fqrs.app;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.search.verification.client.SearchActionVerificationClientService;
+import tglive.fqrs.app.AndroidUtilities;
 
 public class GoogleVoiceClientService extends SearchActionVerificationClientService {
 

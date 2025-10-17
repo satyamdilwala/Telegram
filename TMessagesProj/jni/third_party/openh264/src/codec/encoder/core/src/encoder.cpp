@@ -184,9 +184,9 @@ int32_t InitFunctionPointers (sWelsEncCtx* pEncCtx, SWelsSvcCodingParam* pParam,
 
 #if defined(HAVE_NEON_AARCH64)
   if (uiCpuFlag & WELS_CPU_NEON) {
-    pFuncList->pfSetMemZeroSize8            = WelsSetMemZero_AArch64_neon;
-    pFuncList->pfSetMemZeroSize64Aligned16  = WelsSetMemZero_AArch64_neon;
-    pFuncList->pfSetMemZeroSize64           = WelsSetMemZero_AArch64_neon;
+    pFuncList->pfSetMemZeroSize8            = WelsSetMemZero_neon;
+    pFuncList->pfSetMemZeroSize64Aligned16  = WelsSetMemZero_neon;
+    pFuncList->pfSetMemZeroSize64           = WelsSetMemZero_neon;
   }
 #endif
 

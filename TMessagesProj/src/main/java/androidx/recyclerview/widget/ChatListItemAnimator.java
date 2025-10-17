@@ -1,6 +1,6 @@
 package androidx.recyclerview.widget;
 
-import static org.telegram.messenger.AndroidUtilities.dp;
+import static tglive.fqrs.app.AndroidUtilities.dp;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -18,25 +18,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.BotHelpCell;
-import org.telegram.ui.Cells.ChatActionCell;
-import org.telegram.ui.Cells.ChatMessageCell;
-import org.telegram.ui.Cells.UserInfoCell;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.ChatGreetingsView;
-import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.ThanosEffect;
-import org.telegram.ui.TextMessageEnterTransition;
-import org.telegram.ui.VoiceMessageEnterTransition;
+import tglive.fqrs.app.AndroidUtilities;
+import tglive.fqrs.app.BuildVars;
+import tglive.fqrs.app.FileLog;
+import tglive.fqrs.app.ImageReceiver;
+import tglive.fqrs.app.MessageObject;
+import tglive.fqrs.app.SharedConfig;
+import tglive.fqrs.app.Utilities;
+import tglive.fqrs.app.ui.ActionBar.Theme;
+import tglive.fqrs.app.ui.Cells.BotHelpCell;
+import tglive.fqrs.app.ui.Cells.ChatActionCell;
+import tglive.fqrs.app.ui.Cells.ChatMessageCell;
+import tglive.fqrs.app.ui.Cells.UserInfoCell;
+import tglive.fqrs.app.ui.ChatActivity;
+import tglive.fqrs.app.ui.Components.ChatGreetingsView;
+import tglive.fqrs.app.ui.Components.CubicBezierInterpolator;
+import tglive.fqrs.app.ui.Components.RecyclerListView;
+import tglive.fqrs.app.ui.Components.ThanosEffect;
+import tglive.fqrs.app.ui.TextMessageEnterTransition;
+import tglive.fqrs.app.ui.VoiceMessageEnterTransition;
 
 import java.util.ArrayList;
 import java.util.Collections;

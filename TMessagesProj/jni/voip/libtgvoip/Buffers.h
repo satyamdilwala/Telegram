@@ -147,12 +147,12 @@ namespace tgvoip{
 		}
 		unsigned char& operator[](size_t i){
 			if(i>=length)
-				throw std::out_of_range("");
+				abort(); // Cannot use exceptions with -fno-exceptions
 			return data[i];
 		}
 		const unsigned char& operator[](size_t i) const{
 			if(i>=length)
-				throw std::out_of_range("");
+				abort(); // Cannot use exceptions with -fno-exceptions
 			return data[i];
 		}
 		unsigned char* operator*(){
@@ -163,14 +163,14 @@ namespace tgvoip{
 		}
 		void CopyFrom(const Buffer& other, size_t count, size_t srcOffset=0, size_t dstOffset=0){
 			if(!other.data)
-				throw std::invalid_argument("CopyFrom can't copy from NULL");
+				abort(); // Cannot use exceptions with -fno-exceptions
 			if(other.length<srcOffset+count || length<dstOffset+count)
-				throw std::out_of_range("Out of offset+count bounds of either buffer");
+				abort(); // Cannot use exceptions with -fno-exceptions
 			memcpy(data+dstOffset, other.data+srcOffset, count);
 		}
 		void CopyFrom(const void* ptr, size_t dstOffset, size_t count){
 			if(length<dstOffset+count)
-				throw std::out_of_range("Offset+count is out of bounds");
+				abort(); // Cannot use exceptions with -fno-exceptions
 			memcpy(data+dstOffset, ptr, count);
 		}
 		void Resize(size_t newSize){
